@@ -1,17 +1,11 @@
-#==============×==============#
-#      Created by: Alfa-Ex
-#=========× AyiinXd ×=========#
+FROM python:3.9
 
-FROM ayiinxd/ayiin-userbot:buster
+WORKDIR /app
 
-RUN git clone -b Ayiin-Userbot https://github.com/AyiinXd/Ayiin-Userbot /home/ayiinuserbot/ \
-    && chmod 777 /home/ayiinuserbot \
-    && mkdir /home/ayiinuserbot/bin/
+COPY requirements.txt /app/
 
-COPY ./sample_config.env ./config.env* /home/ayiinuserbot/
+RUN pip3 install -r requirements.txt
 
-WORKDIR /home/ayiinuserbot/
-
-RUN pip install -r requirements.txt
+COPY . /app
 
 CMD python3 -m AyiinXd
